@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include "esp_system.h"
+#include "nvs_flash.h"
+#include "driver/spi_master.h"
+
+void app_main(void) {
+    // Initialize NVS
+    esp_err_t ret = nvs_flash_init();
+    if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
+        ESP_ERROR_CHECK(nvs_flash_erase());
+        ret = nvs_flash_init();
+    }
+    ESP_ERROR_CHECK(ret);
+
+    // Initialize SPI
+    spi_bus_config_t buscfg = {
+        .miso_io_num = 25,
+        .mosi_io_num = 23,
+        .sclk_io_num = 19,
+        .quadwp_io_num = -1,
+        .quadhd_io_num = -1,
+    };
+    ret = spi_bus_initialize(HSPI_HOST, &buscfg, 1);
+    ESP_ERROR_CHECK(ret);
+
+    printf("Firmware template initialized.\n");
+}

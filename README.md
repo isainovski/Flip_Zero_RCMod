@@ -174,7 +174,7 @@ Software Setup
 
 	1.	Clone the Repository:
 
-git clone https://github.com/yourusername/flipper-zero-enhanced-main-module.git
+git clone https://github.com/isainovski/Flip_Zero_RCMod.git
 
 
 	2.	Install Required Libraries: Ensure you have the necessary libraries for ESP32 and Flipper Zero development.
